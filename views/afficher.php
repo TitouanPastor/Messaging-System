@@ -11,48 +11,90 @@
 
 <body>
     <style>
+        /* Style de base */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+        }
+
         #chat {
-            width: 500px;
-            height: 500px;
-            border: 1px solid black;
             margin: 0 auto;
+            max-width: 700px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
         }
 
         #messages {
             display: flex;
             flex-direction: column-reverse;
-            width: 100%;
-            height: 400px;
-            border: 1px solid black;
-            overflow: auto;
+            max-height: 400px;
+            overflow-y: scroll;
+            padding: 10px;
         }
 
         #messages p {
-            padding: 8px;
-            margin: 0;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
         }
 
         form {
-            width: 100%;
-            height: 100px;
-            border: 1px solid black;
             display: flex;
-            flex-direction: column;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ddd;
         }
 
-        form input {
-            width: 200px;
-            height: 30px;
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #4CAF50;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
         }
     </style>
     <!-- Chat de messagerie -->
+    <h1>Chat Connecté</h1>
     <div id="chat">
         <div id="messages"></div>
         <form method="get" onsubmit="return false;">
-            <input type="text" name="name" id="name" placeholder="Votre nom" require>
-            <input type="text" name="message" id="message" placeholder="Votre message" require>
+            <input type="text" name="name" id="name" placeholder="Votre nom" required>
+            <input type="text" name="message" id="message" placeholder="Votre message" required>
             <input type="submit" value="Envoyer">
         </form>
     </div>
@@ -71,7 +113,7 @@
                 data: 'name=' + name + '&message=' + message,
                 success: function(data) {
                     getMessages();
-                    $('form')[0].reset();
+                    $('#message').val('');
                 },
                 error: function() {
                     alert('Erreur lors de l\'envoi du message !');
