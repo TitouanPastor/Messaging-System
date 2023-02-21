@@ -9,3 +9,4 @@ $linkpdo = $sql->getConnection();
 $req = $linkpdo->prepare('select * from chat order by timestamp desc limit 10');
 $req->execute();
 
+lalalaa
