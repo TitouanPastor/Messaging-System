@@ -51,8 +51,8 @@
     <div id="chat">
         <div id="messages"></div>
         <form method="get" onsubmit="return false;">
-            <input type="text" name="name" id="name" placeholder="Votre nom">
-            <input type="text" name="message" id="message" placeholder="Votre message">
+            <input type="text" name="name" id="name" placeholder="Votre nom" require>
+            <input type="text" name="message" id="message" placeholder="Votre message" require>
             <input type="submit" value="Envoyer">
         </form>
     </div>
