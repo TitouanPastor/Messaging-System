@@ -32,5 +32,5 @@ class connectToBD
     public function closeConnection()
     {
         $this->linkpdo = null;
-    }lalala
+    }
 }
