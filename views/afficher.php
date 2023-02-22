@@ -6,88 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
-    <style>
-        /* Style de base */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
 
-        body {
-            display: flex;
-            flex-direction: column;
-            width: 100vw;
-            height: 100vh;
-            justify-content: center;
-            gap: 20px;
-            align-items: center;
-            font-family: sans-serif;
-            background-color: #f0f0f0;
-        }
-
-        #chat {
-            margin: 0 auto;
-            max-width: 700px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        #messages {
-            display: flex;
-            flex-direction: column-reverse;
-            max-height: 400px;
-            overflow-y: scroll;
-            padding: 10px;
-        }
-
-        #messages p {
-            margin-bottom: 10px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-        }
-
-        form {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-top: 1px solid #ddd;
-        }
-
-        input[type="text"] {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-right: 10px;
-            transition: border-color 0.3s ease;
-        }
-
-        input[type="text"]:focus {
-            border-color: #4CAF50;
-        }
-
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #3e8e41;
-        }
-    </style>
     <!-- Chat de messagerie -->
     <h1>Chat Connecté</h1>
     <div id="chat">
@@ -129,7 +53,40 @@
                     var messages = JSON.parse(data);
                     var html = '';
                     for (var i = 0; i < messages.length; i++) {
+
+                        var dateDeReference = new Date(messages[i]['timestamp']);
+
+                        // Calculer le temps écoulé en millisecondes depuis la date de référence jusqu'à maintenant
+                        var tempsEcoule = Date.now() - dateDeReference.getTime();
+
+                        // Convertir le temps écoulé en secondes, minutes, heures et jours
+                        var secondes = Math.floor(tempsEcoule / 1000);
+                        var minutes = Math.floor(secondes / 60);
+                        var heures = Math.floor(minutes / 60);
+                        var jours = Math.floor(heures / 24);
+
+                        // Afficher le temps écoulé
+                        jours + ' jours, ' + heures % 24 + ' heures, ' + minutes % 60 + ' minutes et ' + secondes % 60 + ' secondes'
+
                         html += '<p>' + messages[i]['senderName'] + ' : ' + messages[i]['message'] + '</p>';
+                        $date = "Il y a ";
+                        if(jours != 0){
+                            $date += jours + " jour(s)";
+                        }
+                        else if(heures != 0){
+                            $date += heures + " heure(s)";
+                        }
+                        else if(minutes != 0){
+                            $date += minutes + " minute(s)";
+                        }
+                        else if(secondes != 0){
+                            $date += secondes + " seconde(s)";
+                        }
+                        else{
+                            $date += "maintenant";
+                        }
+                        html += $date;
+
                     }
                     $('#messages').html(html);
                 },
