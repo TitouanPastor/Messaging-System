@@ -17,18 +17,28 @@
     <div id="chat">
         <div id="messages"></div>
         <form method="get" onsubmit="return false;">
-            <input type="text" name="name" id="name" placeholder="Votre nom" required>
-            <input type="text" name="message" id="message" placeholder="Votre message" required>
-            <input type="submit" value="Envoyer">
+            <input type="text" name="name" id="name" value="bapt" placeholder="Votre nom" required>
+            <input type="text" name="message" id="message"  placeholder="Votre message" required>
+            <input type="submit" value="Envoyer" id="submit">
         </form>
     </div>
     <script>
         $(document).ready(function() {
             getMessages();
-            setInterval(getMessages, 2000);
+            setInterval(getMessages, 2000000);
         });
 
-        $('form').submit(function() {
+        $('#submit').click(function() {
+            sendMessage();
+        });
+        $('#name').keypress(function(e) {
+            if (e.which == 13) {
+                sendMessage()
+            }
+        });
+
+        function sendMessage() {
+
             var name = $('#name').val();
             var message = $('#message').val();
             $.ajax({
@@ -43,14 +53,14 @@
                     alert('Erreur lors de l\'envoi du message !');
                 }
             });
-        });
+        }
 
         function getMessages() {
             $.ajax({
                 url: '../php/recuperer.php',
                 type: 'GET',
                 success: function(data) {
-                    var messages = JSON.parse(data);
+                    messages = JSON.parse(data);
                     var html = '';
                     for (var i = 0; i < messages.length; i++) {
 
@@ -66,27 +76,29 @@
                         var jours = Math.floor(heures / 24);
 
                         // Afficher le temps écoulé
-                        jours + ' jours, ' + heures % 24 + ' heures, ' + minutes % 60 + ' minutes et ' + secondes % 60 + ' secondes'
-
-                        html += '<p>' + messages[i]['senderName'] + ' : ' + messages[i]['message'] + '</p>';
-                        $date = "Il y a ";
-                        if(jours != 0){
+                  
+                        $date =  '</div> <p class="info"> '+ messages[i]['senderName'] + ' - ' ;
+                        if (jours != 0) {
                             $date += jours + " jour(s)";
-                        }
-                        else if(heures != 0){
+                        } else if (heures != 0) {
                             $date += heures + " heure(s)";
-                        }
-                        else if(minutes != 0){
+                        } else if (minutes != 0) {
                             $date += minutes + " minute(s)";
-                        }
-                        else if(secondes != 0){
+                        } else if (secondes != 0) {
                             $date += secondes + " seconde(s)";
-                        }
-                        else{
+                        } else {
                             $date += "maintenant";
                         }
-                        html += $date;
-
+                        html += $date + '</p>';
+                        
+                        if (messages[i]['senderName'] == $('#name').val()) {
+                            html += '<div class="me">';
+                            html += '<p> ' + messages[i]['message'] + '</p>';
+                        } else {
+                            html += '<div class="message">';
+                            html += '<p> ' + messages[i]['message'] + '</p>';
+                            
+                        }
                     }
                     $('#messages').html(html);
                 },
