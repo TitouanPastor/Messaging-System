@@ -17,7 +17,7 @@
     <div id="chat">
         <div id="messages"></div>
         <form method="get" onsubmit="return false;">
-            <input type="text" name="name" id="name" value="bapt" placeholder="Votre nom" required>
+            <input type="text" name="name" id="name" value="Pablo" placeholder="Votre nom" required>
             <input type="text" name="message" id="message"  placeholder="Votre message" required>
             <input type="submit" value="Envoyer" id="submit">
         </form>
@@ -76,8 +76,11 @@
                         var jours = Math.floor(heures / 24);
 
                         // Afficher le temps écoulé
-                  
-                        $date =  '</div> <p class="info"> '+ messages[i]['senderName'] + ' - ' ;
+                        if (messages[i]['senderName'] == $('#name').val()) {
+                            $date =  '</div> <p class="info sender"> '+ messages[i]['senderName'] + ' - ' ;
+                        }else{
+                            $date =  '</div> <p class="info receiver"> '+ messages[i]['senderName'] + ' - ' ;
+                        }
                         if (jours != 0) {
                             $date += jours + " jour(s)";
                         } else if (heures != 0) {
