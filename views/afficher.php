@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
+<html lang="fr">
 <?php
 
     session_start();
 
 ?>
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Room <?php echo $_GET['room']; ?> </title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
 <body>
 
     <!-- Chat de messagerie -->
     <a class="button deco" href="rooms.php">Retour</a>
-    <h1>Chat Connecté</h1>
+    <h1>Chat Connecté - Room <?php echo $_GET['room']; ?></h1>
     <div id="chat">
         <div id="messages"></div>
         <form method="get" onsubmit="return false;">

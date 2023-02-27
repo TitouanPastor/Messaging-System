@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -19,6 +19,7 @@ $room = new Room();
     <a class="button deco" href="connexion.php">Déconnexion</a>
     <div id="roomList">
         <h1>Salons de chat</h1>
+        <p>Bonjour <?php echo $_SESSION['pseudo']; ?></p>
         <div id="rooms"></div>
         <a class="button add" href="afficher.php?room=<?php echo $room->nbRooms() + 1; ?>">Créer un nouveau salon</a>
     </div>
