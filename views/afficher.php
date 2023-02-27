@@ -17,6 +17,7 @@
     <div id="chat">
         <div id="messages"></div>
         <form method="get" onsubmit="return false;">
+            <input type="hidden" name="room" id="room" value="<?php echo $_GET['room']; ?>">
             <input type="text" name="name" id="name" value="Pablo" placeholder="Votre nom" required>
             <input type="text" name="message" id="message"  placeholder="Votre message" required>
             <input type="submit" value="Envoyer" id="submit">
@@ -24,8 +25,8 @@
     </div>
     <script>
         $(document).ready(function() {
-            getMessages();
-            setInterval(getMessages, 2000000);
+            getMessages();  
+            setInterval(getMessages, 1000);
         });
 
         $('#submit').click(function() {
@@ -41,10 +42,11 @@
 
             var name = $('#name').val();
             var message = $('#message').val();
+            var room = $('#room').val();
             $.ajax({
                 url: '../php/enregistrer.php',
                 type: 'GET',
-                data: 'name=' + name + '&message=' + message,
+                data: 'name=' + name + '&message=' + message + '&room=' + room,
                 success: function(data) {
                     getMessages();
                     $('#message').val('');
