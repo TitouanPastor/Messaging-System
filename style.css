@@ -117,14 +117,26 @@ input[type="submit"]:hover {
     border-radius: 10px;
     background-color: #3e8e41;
     list-style: none;
+    text-align: center;
 }
 
 .room a{
     color: #fff;
     text-decoration: none;
+    
 }
 
 #roomList{
     padding : 80px;
 }
+
+.add{
+    margin-top: 45px;
+    display: flex;
+    background-color: cornflowerblue;
+    align-self: center;
+    color: #fff;
+    text-decoration: none;
+}
+
 
