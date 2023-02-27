@@ -44,7 +44,7 @@ form {
     border-top: 1px solid #ddd;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"]  {
     flex: 1;
     padding: 10px 10px; 
     border-radius: 5px;
@@ -110,7 +110,7 @@ input[type="submit"]:hover {
     text-align: left;
 }
 
-.room{
+.button{
     margin : 10px;
     padding: 10px;
     border: #3e8e41 1px solid;
@@ -120,7 +120,7 @@ input[type="submit"]:hover {
     text-align: center;
 }
 
-.room a{
+.button a{
     color: #fff;
     text-decoration: none;
     
@@ -134,9 +134,33 @@ input[type="submit"]:hover {
     margin-top: 45px;
     display: flex;
     background-color: cornflowerblue;
+    border-color: cornflowerblue;
     align-self: center;
     color: #fff;
     text-decoration: none;
 }
+
+.deco{
+    margin-top: 45px;
+    display: flex;
+    background-color: red;
+    align-self: center;
+    color: #fff;
+    text-decoration: none;
+    border-color: red;
+}
+
+#connexion{
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    flex-direction: column;
+}
+
+#connexion label, #connexion input[type="submit"] {
+    margin: 10px;
+}
+
+
 
 

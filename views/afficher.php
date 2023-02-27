@@ -9,16 +9,22 @@
     <link rel="stylesheet" href="../style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+<?php
+
+    session_start();
+
+?>
 
 <body>
 
     <!-- Chat de messagerie -->
+    <a class="button deco" href="rooms.php">Retour</a>
     <h1>Chat Connecté</h1>
     <div id="chat">
         <div id="messages"></div>
         <form method="get" onsubmit="return false;">
             <input type="hidden" name="room" id="room" value="<?php echo $_GET['room']; ?>">
-            <input type="text" name="name" id="name" value="Pablo" placeholder="Votre nom" required>
+            <input type="text" name="name" id="name" value=<?php echo $_SESSION['pseudo'] ?> placeholder="Votre nom" disabled="disabled" required>
             <input type="text" name="message" id="message"  placeholder="Votre message" required>
             <input type="submit" value="Envoyer" id="submit">
         </form>

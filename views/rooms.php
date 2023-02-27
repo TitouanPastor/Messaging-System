@@ -10,15 +10,17 @@
     <title>Salons de chat</title>
 </head>
 <?php
-    require_once('../php/room.php');
-    $room = new Room();
+session_start();
+require_once('../php/room.php');
+$room = new Room();
 ?>
-<body>
 
+<body>
+    <a class="button deco" href="connexion.php">Déconnexion</a>
     <div id="roomList">
         <h1>Salons de chat</h1>
         <div id="rooms"></div>
-        <a class="room add" href="afficher.php?room=<?php echo $room->nbRooms() + 1; ?>">Créer un nouveau salon</a>
+        <a class="button add" href="afficher.php?room=<?php echo $room->nbRooms() + 1; ?>">Créer un nouveau salon</a>
     </div>
 </body>
 <script>
@@ -36,14 +38,15 @@
                 messages = JSON.parse(data);
                 var html = '';
                 for (var i = 0; i < messages.length; i++) {
-                    html += '<li class="room"> <a href="afficher.php?room="'+ messages[i].room+'">Salon ' + messages[i].room + '</a></li>'  ;
+                    html += '<li class="button"> <a href="afficher.php?room=' + messages[i].room + '">Salon ' + messages[i].room + '</a></li>';
                 }
                 $('#rooms').html(html);
             },
             error: function() {
                 alert('Erreur lors de la récupération des messages !');
             }
-        })};
-        </script>
+        })
+    };
+</script>
 
 </html>
