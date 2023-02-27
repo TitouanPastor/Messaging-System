@@ -58,9 +58,11 @@
         }
 
         function getMessages() {
+            var room = $('#room').val();
             $.ajax({
                 url: '../php/recuperer.php',
                 type: 'GET',
+                data: 'room=' + room,
                 success: function(data) {
                     messages = JSON.parse(data);
                     var html = '';

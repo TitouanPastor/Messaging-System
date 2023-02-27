@@ -17,7 +17,7 @@ body {
     background-color: #f0f0f0;
 }
 
-#chat {
+#chat, #roomList {
     margin: 10 auto;
     max-width: 500px;
     background-color: #fff;
@@ -109,3 +109,22 @@ input[type="submit"]:hover {
 .receiver{
     text-align: left;
 }
+
+.room{
+    margin : 10px;
+    padding: 10px;
+    border: #3e8e41 1px solid;
+    border-radius: 10px;
+    background-color: #3e8e41;
+    list-style: none;
+}
+
+.room a{
+    color: #fff;
+    text-decoration: none;
+}
+
+#roomList{
+    padding : 80px;
+}
+

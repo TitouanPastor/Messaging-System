@@ -9,11 +9,20 @@
         }
 
         public function getRooms(){
-            $stmt = $this->linkpdo->prepare("SELECT DISTINCT room FROM chat");
+            $stmt = $this->linkpdo->prepare("SELECT DISTINCT room FROM chat order by room");
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }
+
+        public function nbRooms(){
+            $stmt = $this->linkpdo->prepare("SELECT DISTINCT room FROM chat order by room");
+            $stmt->execute();
+            $result = $stmt->rowCount();
+            return $result;
+        }
+
+        
 
 
     }
