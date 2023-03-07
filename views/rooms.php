@@ -16,7 +16,7 @@ $room = new Room();
 ?>
 
 <body>
-    <a class="button deco" href="../connexion.php">Déconnexion</a>
+    <a class="button deco" href="../index.php">Déconnexion</a>
     <div id="roomList">
         <h1>Salons de chat</h1>
         <p>Bonjour <?php echo $_SESSION['pseudo']; ?></p>
