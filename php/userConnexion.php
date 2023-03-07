@@ -13,7 +13,7 @@ class userConnexion
         $this->linkpdo = $sql->getConnection();
     }
 
-
+    // connexion avec le pseudo et le mot de passe
     public function connexion($pseudo, $password)
     {
         $req = $this->linkpdo->prepare('SELECT * FROM user WHERE lower(pseudo) = lower(:pseudo) AND password = :password');
@@ -27,6 +27,7 @@ class userConnexion
         return false;
     }
 
+    // Vérification de l'existence de l'utilisateur
     public function userExist($pseudo)
     {
         $req = $this->linkpdo->prepare('SELECT * FROM user WHERE lower(pseudo) = lower(:pseudo)');
@@ -39,6 +40,7 @@ class userConnexion
         return false;
     }
 
+    // Création d'un utilisateur
     public function createUser($pseudo, $password)
     {
         if (!$this->userExist($pseudo)) {

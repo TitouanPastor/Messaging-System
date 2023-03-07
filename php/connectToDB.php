@@ -7,14 +7,10 @@ class connectToBD
     public function __construct()
     {
 
-        // $server = 'sql849.main-hosting.eu';
-        // $login  = 'u743447366_messagerie';
-        // $mdp    = ']5EcMd^w$TzO';
-        // $db     = 'u743447366_messagerie';
-        $server = 'localhost';
-        $login  = 'bapt';
-        $mdp    = 'iutinfo';
-        $db     = 'messagerie';
+        $server = '89.116.147.154';
+        $login  = 'u743447366_messagerie';
+        $mdp    = ']5EcMd^w$TzO';
+        $db     = 'u743447366_messagerie';
 
         try {
             $this->linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);

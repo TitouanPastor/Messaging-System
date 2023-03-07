@@ -16,7 +16,7 @@ $room = new Room();
 ?>
 
 <body>
-    <a class="button deco" href="connexion.php">Déconnexion</a>
+    <a class="button deco" href="../connexion.php">Déconnexion</a>
     <div id="roomList">
         <h1>Salons de chat</h1>
         <p>Bonjour <?php echo $_SESSION['pseudo']; ?></p>
@@ -24,12 +24,17 @@ $room = new Room();
         <a class="button add" href="afficher.php?room=<?php echo $room->nbRooms() + 1; ?>">Créer un nouveau salon</a>
     </div>
 </body>
+
 <script>
+
+    // Rafraichissement des salons
     $(document).ready(function() {
         getRooms();
-        setInterval(getRooms, 1000);
+        // La db est limité a 500 requêtes par heures, nous ne pouvons pas rafraichir toutes les secondes.
+        setInterval(getRooms, 15000);
     });
 
+    //Récupération des salons pour l'affichage
     function getRooms() {
         var room = $('#room').val();
         $.ajax({
@@ -41,6 +46,8 @@ $room = new Room();
                 for (var i = 0; i < messages.length; i++) {
                     html += '<li class="button"> <a href="afficher.php?room=' + messages[i].room + '">Salon ' + messages[i].room + '</a></li>';
                 }
+
+                // On affiche les salons 
                 $('#rooms').html(html);
             },
             error: function() {
@@ -49,5 +56,4 @@ $room = new Room();
         })
     };
 </script>
-
 </html>

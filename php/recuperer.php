@@ -1,8 +1,9 @@
+<!-- Permet de recuperer les messages d'un salon en particulier -->
+
 <?php
 
-if(isset($_GET['room'])){
+if (isset($_GET['room'])) {
     require_once('connectToDB.php');
-
 
     $sql = new connectToBD();
     $linkpdo = $sql->getConnection();

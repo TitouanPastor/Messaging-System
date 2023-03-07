@@ -5,46 +5,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Connexion</title>
 </head>
 <?php
 
 session_start();
-
-require_once('../php/userConnexion.php');
-
+require_once('php/userConnexion.php');
 $_SESSION['pseudo'] = '';
+$infoExecution = '';
 
+// On vérifie que les champs ne sont pas vides
 if (!empty($_POST['pseudo']) && !empty($_POST['password']))
+
+    // On vérifie que l'utilisateur a cliqué sur le bouton connexion
     if (isset($_POST['connection'])) {
         $pseudo = $_POST['pseudo'];
         $password = $_POST['password'];
         $user = new userConnexion();
         if ($user->connexion($pseudo, $password)) {
             $_SESSION['pseudo'] = $_POST['pseudo'];
-            header('Location: rooms.php');
+            header('Location: views/rooms.php');
         } else {
-            echo "Connexion échouée";
+            $infoExecution = "Connexion échouée. Vérifiez vos identifiants !";
         }
+
+    // On vérifie que l'utilisateur a cliqué sur le bouton s'inscrire
     } elseif (isset($_POST['signin'])) {
         $pseudo = $_POST['pseudo'];
         $password = $_POST['password'];
         $user = new userConnexion();
         if ($user->createUser($pseudo, $password)) {
-            echo "Inscription réussie ! Connectez vous !";
+            $infoExecution = "Inscription réussie ! Connectez vous !";
         } else {
-            echo "Inscription échouée ! l'utilisateur existe deja ! ";
+            $infoExecution = "Inscription échouée ! l'utilisateur existe deja ! ";
         }
     }
 
 ?>
 
 <body>
-    
-        <h1>Connexion</h1>
-        <div id="connexion">
-        <form action="../views/connexion.php" method="post">
+
+    <h1>Connexion</h1>
+    <span id="infoExecution"><?= $infoExecution ?></span>
+    <div id="connexion">
+        <form action="index.php" method="post">
             <label for="pseudo">Pseudo</label>
             <input type="text" name="pseudo" id="pseudo">
             <label for="password">Mot de passe</label>
@@ -52,7 +57,8 @@ if (!empty($_POST['pseudo']) && !empty($_POST['password']))
             <input type="submit" name="connection" value="Connexion">
             <input type="submit" name="signin" value="S'inscrire">
         </form>
-     </div>
+    </div>
+    <span class="span-détails">Fait par T.Pastor & B.Bayche</span>
 </body>
 
 </html>

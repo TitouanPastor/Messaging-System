@@ -1,3 +1,5 @@
+<!-- script permettant d'enregistrer un message de chat -->
+
 <?php
 
 require_once('connectToDB.php');
