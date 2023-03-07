@@ -51,9 +51,9 @@ if (!empty($_POST['pseudo']) && !empty($_POST['password']))
     <div id="connexion">
         <form action="index.php" method="post">
             <label for="pseudo">Pseudo</label>
-            <input type="text" name="pseudo" id="pseudo">
+            <input type="text" name="pseudo" id="pseudo" required>
             <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password">
+            <input type="password" name="password" id="password" required>
             <input type="submit" name="connection" value="Connexion">
             <input type="submit" name="signin" value="S'inscrire">
         </form>

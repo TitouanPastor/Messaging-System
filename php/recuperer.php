@@ -1,6 +1,7 @@
-<!-- Permet de recuperer les messages d'un salon en particulier -->
+
 
 <?php
+// Permet de recuperer les messages d'un salon en particulier
 
 if (isset($_GET['room'])) {
     require_once('connectToDB.php');

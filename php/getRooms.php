@@ -1,6 +1,7 @@
-<!-- Recuperation des salons de chat -->
+
 
 <?php
+// Recuperation des salons de chat
 
 require_once('connectToDB.php');
 
