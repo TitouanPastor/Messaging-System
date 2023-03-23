@@ -58,7 +58,7 @@ if (!empty($_POST['pseudo']) && !empty($_POST['password']))
             <input type="submit" name="signin" value="S'inscrire">
         </form>
     </div>
-    <span class="span-détails">Fait par T.Pastor & B.Bayche</span>
+    <span class="span-détails" style="text-align: center;">Réalisé par T.Pastor & B.Bayche <br>Si les données ne s'affichent, c'est car le host à une limite de requêtes(500), patientez juste quelques minutes.</span>
 </body>
 
 </html>
