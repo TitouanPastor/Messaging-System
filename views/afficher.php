@@ -95,7 +95,8 @@ session_start();
                         var jours = Math.floor(heures / 24);
 
                         // Afficher le temps écoulé
-                        if (messages[i]['senderName'] == $('#name').val()) {
+                        
+                        if (messages[i]['senderName'].toLowerCase() == $('#name').val().toLowerCase()) {
                             $date = '</div> <p class="info sender"> ' + messages[i]['senderName'] + ' - ';
                         } else {
                             $date = '</div> <p class="info receiver"> ' + messages[i]['senderName'] + ' - ';
@@ -114,7 +115,7 @@ session_start();
                         html += $date + '</p>';
 
                         // Afficher le message suivant le nom de l'expéditeur
-                        if (messages[i]['senderName'] == $('#name').val()) {
+                        if (messages[i]['senderName'].toLowerCase() == $('#name').val().toLowerCase()) {
                             html += '<div class="me">';
                             html += '<p> ' + messages[i]['message'] + '</p>';
                         } else {
