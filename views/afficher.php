@@ -54,9 +54,9 @@ session_start();
         // Exercice 2 : envoi d'un message
         function sendMessage() {
 
-            var name = $('#name').val();
-            var message = $('#message').val();
-            var room = $('#room').val();
+            let name = $('#name').val();
+            let message = $('#message').val();
+            let room = $('#room').val();
             $.ajax({
                 url: '../php/enregistrer.php',
                 type: 'GET',
@@ -73,26 +73,26 @@ session_start();
 
         //Récupération des messages et mise en forme sous forme html
         function getMessages() {
-            var room = $('#room').val();
+            let room = $('#room').val();
             $.ajax({
                 url: '../php/recuperer.php',
                 type: 'GET',
                 data: 'room=' + room,
                 success: function(data) {
                     messages = JSON.parse(data);
-                    var html = '';
-                    for (var i = 0; i < messages.length; i++) {
+                    let html = '';
+                    for (let i = 0; i < messages.length; i++) {
 
-                        var dateDeReference = new Date(messages[i]['timestamp']);
+                        let dateDeReference = new Date(messages[i]['timestamp']);
 
                         // Calculer le temps écoulé en millisecondes depuis la date de référence jusqu'à maintenant
-                        var tempsEcoule = Date.now() - dateDeReference.getTime();
+                        let tempsEcoule = Date.now() - dateDeReference.getTime();
 
                         // Convertir le temps écoulé en secondes, minutes, heures et jours
-                        var secondes = Math.floor(tempsEcoule / 1000);
-                        var minutes = Math.floor(secondes / 60);
-                        var heures = Math.floor(minutes / 60);
-                        var jours = Math.floor(heures / 24);
+                        let secondes = Math.floor(tempsEcoule / 1000);
+                        let minutes = Math.floor(secondes / 60);
+                        let heures = Math.floor(minutes / 60);
+                        let jours = Math.floor(heures / 24);
 
                         // Afficher le temps écoulé
                         

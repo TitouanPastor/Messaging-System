@@ -36,14 +36,14 @@ $room = new Room();
 
     //Récupération des salons pour l'affichage
     function getRooms() {
-        var room = $('#room').val();
+        let room = $('#room').val();
         $.ajax({
             url: '../php/getRooms.php',
             type: 'GET',
             success: function(data) {
                 messages = JSON.parse(data);
-                var html = '';
-                for (var i = 0; i < messages.length; i++) {
+                let html = '';
+                for (let i = 0; i < messages.length; i++) {
                     html += '<li class="button"> <a href="afficher.php?room=' + messages[i].room + '">Salon ' + messages[i].room + '</a></li>';
                 }
 
